@@ -7,11 +7,16 @@ const router = express.Router();
 
 const DEFAULT_LISTEN_PORT =  4000;
 
-// eslint-disable-next-line no-process-env
-const QUEUES = JSON.parse( process.env.QUEUES );
-
-if ( !QUEUES ) {
+if ( !process.env.QUEUES ) {
     throw new Error( 'Unable to load queues' );
+}
+
+let queues;
+
+try {
+    queues = JSON.parse( process.env.QUEUES );
+} catch ( JSONParseError ) {
+    throw JSONParseError;
 }
 
 const users = {};
@@ -29,7 +34,7 @@ const getUnauthorizedResponse = function getUnauthorizedResponse ( request ) {
 
 const arena = Arena(
     {
-        queues: QUEUES,
+        queues: queues,
     },
     {
         disableListen: true,
