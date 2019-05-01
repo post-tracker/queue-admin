@@ -15,5 +15,6 @@
     "bull-arena": "^2.2.2",
     "express": "^4.16.2",
     "express-basic-auth": "^1.1.3"
+    "dotenv": "^4.0.0",
   }
 }

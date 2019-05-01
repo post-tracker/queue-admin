@@ -1,3 +1,5 @@
+require( 'dotenv' ).config();
+
 const Arena = require( 'bull-arena' );
 const express = require( 'express' );
 const basicAuth = require( 'express-basic-auth' );
