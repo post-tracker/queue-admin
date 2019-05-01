@@ -32,6 +32,12 @@ const getUnauthorizedResponse = function getUnauthorizedResponse ( request ) {
     return 'No credentials provided';
 };
 
+if ( process.env.REDIS_URL ) {
+    for ( const queue of queues ) {
+        queue.url = process.env.REDIS_URL;
+    }
+}
+
 const arena = Arena(
     {
         queues: queues,
